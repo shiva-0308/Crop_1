@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Crop Prediction</title>
+  <style>
+    body {
+      background-color: #111;
+      color: #fff;
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+    }
+
+    h1 {
+      color: #4CAF50;
+    }
+
+    .message {
+      margin-bottom: 20px;
+      color: #4CAF50; /* Green color for the message */
+    }
+
+    .button-container {
+      display: flex;
+      gap: 6px;
+      margin-bottom: 20px;
+    }
+
+    .button {
+      display: inline-block;
+      padding: 10px 20px;
+      text-decoration: none;
+      color: #fff;
+      background-color: #3498db;
+      border-radius: 5px;
+      margin: 10px;
+      cursor: pointer;
+    }
+
+    .blink {
+      animation: blink 1s infinite;
+    }
+
+    @keyframes blink {
+      50% {
+        opacity: 0;
+      }
+    }
+
+    .stars {
+      display: flex;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+
+    .star {
+      color: #fff;
+      font-size: 24px;
+      margin-right: 5px;
+      transition: color 0.3s;
+    }
+
+    .comment-box {
+      display: none;
+      margin-top: 10px;
+    }
+
+    .comment-input {
+      padding: 5px;
+      width: 200px;
+    }
+
+    .submit-button {
+      background-color: #3498db;
+      color: #fff;
+      padding: 5px 10px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .thankyou {
+      position: absolute;
+      bottom: 10px;
+      right: 3em;
+    }
+  </style>
+</head>
+<body>
+  <h1>Welcome to Crop Prediction</h1>
+  <div class="message">Choose your service</div>
+  <div class="button-container">
+    <a href="/prediction" class="button">Make Crop Prediction</a>
+    <a href="/show_data" class="button">Show Data</a>
+  </div>
+  <div class="stars" onclick="showCommentBox()">
+    <span class="star" onclick="changeColor(this)">&#9733;</span>
+    <span class="star" onclick="changeColor(this)">&#9733;</span>
+    <span class="star" onclick="changeColor(this)">&#9733;</span>
+    <span class="star" onclick="changeColor(this)">&#9733;</span>
+    <span class="star" onclick="changeColor(this)">&#9733;</span>
+  </div>
+  <div class="comment-box" id="commentBox">
+    <input type="text" class="comment-input" placeholder="Enter your comment">
+    <button class="submit-button">Submit</button>
+  </div>
+  <div class="thankyou blink">Thank you! 😊</div>
+
+  <p class="message">Share your experience</p>
+
+  <script>
+    function showCommentBox() {
+      document.getElementById("commentBox").style.display = "block";
+    }
+
+    function changeColor(star) {
+      if (star.style.color === "rgb(255, 215, 0)") {
+        // If the star is yellow, change it back to white
+        star.style.color = "#fff";
+      } else {
+        // If the star is not yellow, change it to yellow
+        star.style.color = "#ffd700";
+      }
+    }
+  </script>
+</body>
+</html>

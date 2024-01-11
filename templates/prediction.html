@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Crop Prediction</title>
+  <style>
+    body {
+      background-color: #111;
+      color: #fff;
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+    }
+
+    h1 {
+      color: #4CAF50;
+    }
+
+    form {
+      width: 300px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    label {
+      color: #4CAF50;
+    }
+
+    input {
+      padding: 8px;
+      border: 1px solid #4CAF50;
+      border-radius: 5px;
+      background-color: #111;
+      color: #fff;
+    }
+
+    button {
+      padding: 10px;
+      background-color: #4CAF50;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .warning {
+      color: #ffcc00;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Crop Prediction</h1>
+  <form onsubmit="return validateForm()" action="/prediction" method="POST">
+    <label for="nitrogen">Nitrogen:</label>
+    <input type="text" id="nitrogen" name="nitrogen" placeholder="Enter nitrogen value" required onkeypress="focusNextField(event, 'phosphorus')">
+
+    <label for="phosphorus">Phosphorus:</label>
+    <input type="text" id="phosphorus" name="phosphorus" placeholder="Enter phosphorus value" required onkeypress="focusNextField(event, 'temperature')">
+
+    <label for="temperature">Temperature:</label>
+    <input type="text" id="temperature" name="temperature" placeholder="Enter temperature value" required onkeypress="focusNextField(event, 'humidity')">
+
+    <label for="humidity">Humidity:</label>
+    <input type="text" id="humidity" name="humidity" placeholder="Enter humidity value" required onkeypress="focusNextField(event, 'ph')">
+
+    <label for="ph">pH:</label>
+    <input type="text" id="ph" name="ph" placeholder="Enter pH value" required onkeypress="focusNextField(event, 'rainfall')">
+
+    <label for="rainfall">Rainfall:</label>
+    <input type="text" id="rainfall" name="rainfall" placeholder="Enter rainfall value" required onkeypress="focusNextField(event, 'submitBtn')">
+
+    <button type="submit" id="submitBtn">Predict</button>
+    <p class="warning" id="warningMessage"></p>
+  </form>
+
+  <script>
+    function validateForm() {
+      const isNumeric = (value) => !isNaN(value) && !isNaN(parseFloat(value));
+
+      const nitrogen = document.getElementById("nitrogen").value;
+      const phosphorus = document.getElementById("phosphorus").value;
+      const temperature = document.getElementById("temperature").value;
+      const humidity = document.getElementById("humidity").value;
+      const ph = document.getElementById("ph").value;
+      const rainfall = document.getElementById("rainfall").value;
+      const warningMessage = document.getElementById("warningMessage");
+
+      // Check if any field contains non-numeric characters
+      if (
+        !isNumeric(nitrogen) || !isNumeric(phosphorus) ||
+        !isNumeric(temperature) || !isNumeric(humidity) ||
+        !isNumeric(ph) || !isNumeric(rainfall)
+      ) {
+        warningMessage.textContent = "Please enter valid numeric values for all fields.";
+        return false;
+      }
+
+      // Check if any field is empty
+      if (!nitrogen || !phosphorus || !temperature || !humidity || !ph || !rainfall) {
+        warningMessage.textContent = "Please fill in all fields.";
+        return false;
+      }
+
+      // Clear the warning message if all checks pass
+      warningMessage.textContent = "";
+      return true;
+    }
+
+    function focusNextField(event, nextFieldId) {
+      if (event.key === 'Enter') {
+        event.preventDefault();
+        document.getElementById(nextFieldId).focus();
+      }
+    }
+  </script>
+</body>
+</html>
