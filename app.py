@@ -23,13 +23,13 @@ def prediction():
             mlmodel = pickle.load(model_file)
         res =  mlmodel.predict([[float(N),float(P),float(K),float(T),float(H),float(PH),float(R)]])
         print(res)
-        return jsonify({"result":str(res[0])})
+        return jsonify(res = str(res[0]))
+        #return render_template({"result.html":str(res[0])})
     else:
         return render_template('prediction.html')    
-    return render_template('prediction.html')
 
 @app.route('/showdata')
 def showdata():
     return render_template('showdata.html')
 if __name__=='__main__':
-    app.run()
+    app.run(host = '0.0.0.0',port=5132)

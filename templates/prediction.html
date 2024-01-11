@@ -63,7 +63,10 @@
     <input type="text" id="nitrogen" name="nitrogen" placeholder="Enter nitrogen value" required onkeypress="focusNextField(event, 'phosphorus')">
 
     <label for="phosphorus">Phosphorus:</label>
-    <input type="text" id="phosphorus" name="phosphorus" placeholder="Enter phosphorus value" required onkeypress="focusNextField(event, 'temperature')">
+    <input type="text" id="phosphorus" name="phosphorus" placeholder="Enter phosphorus value" required onkeypress="focusNextField(event, 'potassium')">
+
+    <label for="potassium">potassium:</label>
+    <input type="text" id="potassium" name="potassium" placeholder="Enter potassium value" required onkeypress="focusNextField(event, 'temperature')">
 
     <label for="temperature">Temperature:</label>
     <input type="text" id="temperature" name="temperature" placeholder="Enter temperature value" required onkeypress="focusNextField(event, 'humidity')">
@@ -87,6 +90,7 @@
 
       const nitrogen = document.getElementById("nitrogen").value;
       const phosphorus = document.getElementById("phosphorus").value;
+      const potassium = document.getElementById("potassium").value;
       const temperature = document.getElementById("temperature").value;
       const humidity = document.getElementById("humidity").value;
       const ph = document.getElementById("ph").value;
@@ -95,7 +99,7 @@
 
       // Check if any field contains non-numeric characters
       if (
-        !isNumeric(nitrogen) || !isNumeric(phosphorus) ||
+        !isNumeric(nitrogen) || !isNumeric(phosphorus) || !isNumeric(potassium) ||
         !isNumeric(temperature) || !isNumeric(humidity) ||
         !isNumeric(ph) || !isNumeric(rainfall)
       ) {
@@ -104,7 +108,7 @@
       }
 
       // Check if any field is empty
-      if (!nitrogen || !phosphorus || !temperature || !humidity || !ph || !rainfall) {
+      if (!nitrogen || !phosphorus || !potassium || !temperature || !humidity || !ph || !rainfall) {
         warningMessage.textContent = "Please fill in all fields.";
         return false;
       }
