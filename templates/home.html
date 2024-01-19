@@ -6,25 +6,27 @@
   <title>Crop Prediction</title>
   <style>
     body {
-      background-color: #111;
-      color: #fff;
-      font-family: Arial, sans-serif;
+      background-image: url('https://www.agdaily.com/wp-content/uploads/2018/09/bg-corn_field-001-naramit.jpg');
+      background-size: cover;
+      background-position: center;
+      height: 100vh;
       margin: 0;
-      padding: 0;
       display: flex;
-      flex-direction: column;
       align-items: center;
       justify-content: center;
-      height: 100vh;
+      flex-direction: column;
     }
 
     h1 {
-      color: #4CAF50;
+      color: #87CEEB;
+      margin-bottom: 20px;
+      margin-top: -120px; /* Move welcome message 5 lines above */
     }
 
     .message {
       margin-bottom: 20px;
-      color: #4CAF50; /* Green color for the message */
+      margin-top: -20px;
+      color: #000; /* Black color for the message */
     }
 
     .button-container {
@@ -91,15 +93,21 @@
       bottom: 10px;
       right: 3em;
     }
+
+    /* Adjusted margin-top for Share your experience */
+    p.message {
+      margin-top: -20px;
+    }
   </style>
 </head>
 <body>
   <h1>Welcome to Crop Prediction</h1>
   <div class="message">Choose your service</div>
   <div class="button-container">
-    <a href="/prediction" class="button">Make Crop Prediction</a>
+    <a href="/prediction" class="button">predict crop</a>
     <a href="/show_data" class="button">Show Data</a>
   </div>
+  <p class="message">Share your experience</p>
   <div class="stars" onclick="showCommentBox()">
     <span class="star" onclick="changeColor(this)">&#9733;</span>
     <span class="star" onclick="changeColor(this)">&#9733;</span>
@@ -112,8 +120,6 @@
     <button class="submit-button">Submit</button>
   </div>
   <div class="thankyou blink">Thank you! 😊</div>
-
-  <p class="message">Share your experience</p>
 
   <script>
     function showCommentBox() {

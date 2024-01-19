@@ -22,9 +22,9 @@ def prediction():
         with open('model.pkl','rb') as model_file:
             mlmodel = pickle.load(model_file)
         res =  mlmodel.predict([[float(N),float(P),float(K),float(T),float(H),float(PH),float(R)]])
-        print(res)
-        return jsonify(res = str(res[0]))
-        #return render_template({"result.html":str(res[0])})
+        
+        return render_template("result.html",res=res)
+        
     else:
         return render_template('prediction.html')    
 
@@ -32,4 +32,4 @@ def prediction():
 def showdata():
     return render_template('showdata.html')
 if __name__=='__main__':
-    app.run(host = '0.0.0.0',port=5132)
+    app.run()
